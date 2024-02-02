@@ -1,0 +1,103 @@
+#lang racket
+
+; add 5 and 5
+(+ 5 5)
+
+; do 5-2 *3
+(- 5 (* 2 3))
+; Lisp uses prefix notation
+;PEDMAS
+
+(define x 5)
+(define y (+ x 2))
+
+(define nums (list x (list y 10)))
+(define names (list( list '(bob)  list '(karl)  list '(sue))))
+(define names1 '(bob jane bill))
+
+;define pick-up (list 'turn90 'reachout)
+; Lisp is a symbolic language
+
+;define a function
+
+;challange : write a functon that sumpute the quadratic formula
+; -b += squr (' b ^2 - 4 a c)) / 2a
+
+(define (myfunc x) (+ 2 x))
+(define (quad a c) 4 (* a (c)))
+(define (Quad b)  + b (b * b))
+;(define (devide) (+ quad a c quad b) / 2a)
+
+;(let( - b 4)
+ ; ( ** b (- 4)(* a c)))
+
+; "lexical binding" : let
+(let((x 2)
+     (y 3))
+    (+ x y))
+
+;(define (quad a b c)
+ ; (let (( sqrt-part(sqrt ( - ( * b b ) ( * 4 a c ))))))
+  ;      (div - part ( / sqrt -part ( * 2 a )))
+  ;(list( /  ( + (-b) sqrt-part) ( *2 a))
+   ;        ( /  ( - (-b) sqrt-part) ( *2 a)))))
+
+ ; add up all number in a list
+  ; e.g. ( 1 3 5 2 3 9 2) -> 25
+  ;how to do this recurisvely:
+  ; need to thin" what is the basic single operation  that must be done to a wigle value in the list
+  ;-> fir this single valuel add it to the sum
+  ; .... where 'sum is the result of summing the rest of the list (without the first value)
+  ; -> also always need a vase case( in this scenerao, base caseis when list is empty) 
+  (define (sum lst)
+     (if (empty? lst)
+       0
+       (let ((val (first lst))
+             (other(rest lst)))
+         ( + val (sum other)))))
+
+ ;; define n'th fibonacci number if n = 6   1 1 2 3 5 8 13
+
+    (define (fib n)
+      (if ( = n 1) 1
+         
+         (if ( = n 2) 1
+         
+         ( + (fib ( n - 2)) (fib ( - n 1))))))
+
+
+; challeng giving a function f that takes a single input, run f on every value in a list
+; eg ( mymap sqrt '( 1, 3 2 4 5 5))
+
+; list opperation
+;(first '(1 2 3)
+ ;(rest '(1 2 3)
+;cons 1 '( 2 3 ))
+ 
+(define (mymap f lst)
+   (if (empty? lst) '()
+       
+      (let (( a (first lst))
+         ( b (rest lst)))
+      (cons( f a) (mymap f b )))))
+
+;; Challange
+
+;1;; write a func that adds all the number in the range 1 -100 that are multiples of 3 or 5
+; hint: use remainder func to see if a # is a multiple: ( = 0 ( remainder n 3))
+
+;2. create the concept of a "dictionay" or " map using lists
+;; techique; use parts: '(( a 1) ( b 2) is a dictionary
+;; create functions to use these lists, assuming d is the example above
+;; (dget d 'a) -> 1
+;; (dset d 'a5) -> (a 5)
+
+
+(define (sum-mult start end)
+  (let ((sum 0))
+      (do (( num start ( + num 1)))
+       ((> num end) sum)
+       (when ( or (zero? (remainder num 3)) (zero? (remainder num 5)))
+         (set! sum ( + sum sum))))))
+(display (sum-mult 1 100))
+

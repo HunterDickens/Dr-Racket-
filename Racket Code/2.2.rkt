@@ -1,0 +1,17 @@
+#lang racket
+( define pie 3)
+(define (piece str)
+  (substring str 0 pie))
+
+
+
+(define (bake flavor)
+  (printf "preheating oven ...\n")
+  (string-append flavor " pie"))
+(bake "apple")
+
+(if(> 2 3)
+   "2 is bigger than 3"
+   "2 is smaller than 3")
+
+
